@@ -1,7 +1,7 @@
 {
   "name": "twistrand",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": false,
   "packageManager": "pnpm@9.11.0",
   "description": "A PRNG (Pseudo Random Number Generator) library based on Mersenne Twister, written by typescript, supported both esm/cjs.",
@@ -14,6 +14,10 @@
   },
   "bugs": "https://github.com/s3xysteak/twistrand/issues",
   "keywords": [
+    "seed",
+    "random",
+    "algorithm",
+    "Mersenne Twister",
     "utils"
   ],
   "exports": {
