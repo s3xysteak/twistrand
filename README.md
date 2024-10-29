@@ -6,13 +6,13 @@
 
 A PRNG (Pseudo Random Number Generator) library based on Mersenne Twister, written by typescript, supported both esm/cjs.
 
-## Install
+## 🔧 Install
 
 ```sh
 pnpm i twistrand
 ```
 
-## Usage
+## 📝 Usage
 
 ### Basic
 
@@ -45,4 +45,4 @@ const mt = rand()
 - `x = mt.randomFloat(0, 100)`: `x ∈ [0, 100)`
 - `x = mt.randomInt(0, 100)`: `x ∈ [0, 100]` `x ∈ Z`
 
-More usage please refer to [test](/test/).
+> More usage please refer to [test](/test/).
