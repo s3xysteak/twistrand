@@ -7,7 +7,7 @@ function r(times: number, fn: (index: number) => void) {
   }
 }
 
-describe('mersenne-twister', () => {
+describe.concurrent('mersenne-twister', () => {
   it('should generate numbers in [0, 1) range', () => {
     const mt = new MersenneTwister(12345)
 
@@ -63,5 +63,31 @@ describe('mersenne-twister', () => {
       expect(value).toBeGreaterThanOrEqual(min)
       expect(value).toBeLessThan(max)
     })
+  })
+
+  it('chi-square test for random distribution', () => {
+    const samples = 1_000_000
+    const numBuckets = 1001
+    /**
+     * https://www.medcalc.org/manual/chi-square-table.php
+     * p=0.001
+     */
+    const criticalValue = 1143.917
+
+    const mt = new MersenneTwister()
+
+    const counts = Array.from({ length: numBuckets }).fill(0) as number[]
+
+    r(samples, () => {
+      const randomNumber = Math.floor(mt.random() * numBuckets)
+      counts[randomNumber]++
+    })
+
+    const fe = samples / numBuckets
+    const chiSquare = counts.reduce((sum, fo) => {
+      return sum + (fo - fe) ** 2 / fe
+    }, 0)
+
+    expect(chiSquare).toBeLessThanOrEqual(criticalValue)
   })
 })
