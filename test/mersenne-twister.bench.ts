@@ -4,6 +4,15 @@ import MersenneTwister from '../src/mersenne-twister'
 describe('mersenneTwister Benchmarks', () => {
   const mt = new MersenneTwister(12345)
 
+  bench('vanilla Math.random()', () => {
+    Math.random()
+  })
+
+  bench('new instance creation', () => {
+    /* eslint-disable-next-line no-new */
+    new MersenneTwister(12345)
+  })
+
   bench('random() generation', () => {
     mt.random()
   })
@@ -14,14 +23,5 @@ describe('mersenneTwister Benchmarks', () => {
 
   bench('randomFloat() generation', () => {
     mt.randomFloat(-1000.0, 1000.0)
-  })
-
-  bench('new instance creation', () => {
-    /* eslint-disable-next-line no-new */
-    new MersenneTwister(12345)
-  })
-
-  bench('compare with Math.random()', () => {
-    Math.random()
   })
 })
